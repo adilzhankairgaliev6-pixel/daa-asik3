@@ -76,7 +76,35 @@ public class Zones {
      * [1] the cost of the cheapest route from the zone of cell 0 to the zone of the last cell.
      */
     public static long[] routes(Input.Slides s, int[] zoneOf, int zoneCount) {
-        // TODO
-        return new long[]{0, 0};
+        int m = s.count();
+        // group the slides by the zone they start in (counting sort): O(n + m)
+        int[] startAt = new int[zoneCount + 1];
+        for (int i = 0; i < m; i++) startAt[zoneOf[s.from()[i]] + 1]++;
+        for (int z = 0; z < zoneCount; z++) startAt[z + 1] += startAt[z];
+        int[] byZone = new int[m];
+        int[] fill = java.util.Arrays.copyOf(startAt, zoneCount);
+        for (int i = 0; i < m; i++) byZone[fill[zoneOf[s.from()[i]]]++] = i;
+
+        final long INF = Long.MAX_VALUE / 4;
+        long[] dist = new long[zoneCount];        // cheapest cost from the zone of cell 0
+        long[] chain = new long[zoneCount];       // number of zones on the longest chain that ends in this zone
+        java.util.Arrays.fill(dist, INF);
+        java.util.Arrays.fill(chain, 1);
+        dist[zoneOf[0]] = 0;
+
+        long stages = 1;
+        // Zone numbers are a topological order: every slide between zones goes from a smaller to a larger number.
+        // So when we reach zone z, all the slides that enter it are already processed and dist[z], chain[z] are final.
+        for (int z = 0; z < zoneCount; z++) {
+            stages = Math.max(stages, chain[z]);
+            for (int k = startAt[z]; k < startAt[z + 1]; k++) {
+                int i = byZone[k];
+                int y = zoneOf[s.to()[i]];
+                if (y == z) continue;             // a slide inside a zone: walking in a zone is free
+                chain[y] = Math.max(chain[y], chain[z] + 1);
+                if (dist[z] < INF) dist[y] = Math.min(dist[y], dist[z] + s.time()[i]);
+            }
+        }
+        return new long[]{stages, dist[zoneOf[s.n() - 1]]};
     }
 }
