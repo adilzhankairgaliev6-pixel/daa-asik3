@@ -38,6 +38,9 @@ find(x) goes up through the parent links until it reaches the root of the set, a
 they are equal it returns false, otherwise it hangs the smaller set under the larger one and returns true. Union by size keeps the trees low and path compression makes them almost flat, so both operations are almost constant time.
 
 Mission 1. Why is Broken always R*C - 1, and Kept always (R-1)*(C-1)?
+Broken (R×C−1): We have a total of R×C cells (vertices). To connect them all into a single maze with no isolated sections (much like a tree in graph theory), we need exactly one fewer wall than the total number of cells—that is, V−1. Therefore, we always break exactly that many walls.
+
+Kept ((R−1)(C−1)): The total number of internal walls in the grid exceeds what is required for the maze. If we subtract the walls we broke (R×C−1) from the total number of internal walls, we are left with exactly (R−1)(C−1) walls that remain standing in place.
 
 Mission 2. My MST cost from Kruskal and from Prim, and why they are equal:
 
@@ -49,7 +52,9 @@ Mission 5. Why is it enough to go through the zones in the order of their number
 
 ## AI use
 
-Mission 0:Claude (Anthropic): объяснил основные концепции структуры данных «система непересекающихся множеств» (DSU), помог настроить среду Java и Git, а также принял участие в проверке моей реализации классов DisjointSet и DisjointSetTest.
+Mission 0:Claude (Anthropic): explained the core concepts of the Disjoint Set Union (DSU) data structure, helped set up the Java and Git environment, and also took part in reviewing my implementation of the `DisjointSet` and `DisjointSetTest` classes.
+
+Mission 1:Claude (Anthropic): helped understand why the number of broken and kept walls follows these formulas, and explained the logic for implementing DSU and wall-breaking.
 ## Timing (Mission 7)
 
 Milliseconds, 5 runs each, from `java -cp out Bench`.
