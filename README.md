@@ -34,6 +34,8 @@ My maze:
 Answer in your own words, two or three sentences each.
 
 Mission 0. What do find and union do, and what makes them fast in your code?
+find(x) goes up through the parent links until it reaches the root of the set, and on the way back it points every visited cell straight to the root (path compression). union(a, b) finds the two roots; if
+they are equal it returns false, otherwise it hangs the smaller set under the larger one and returns true. Union by size keeps the trees low and path compression makes them almost flat, so both operations are almost constant time.
 
 Mission 1. Why is Broken always R*C - 1, and Kept always (R-1)*(C-1)?
 
@@ -47,8 +49,7 @@ Mission 5. Why is it enough to go through the zones in the order of their number
 
 ## AI use
 
-The syllabus requires you to say which AI tools you used and for what. Write the tool (ChatGPT, Copilot, other) and what you asked it: explain an idea, find an error, review code. Write "none" if you did not use any. If you took code or text from a book or a website, give the source here.
-
+Mission 0:Claude (Anthropic): объяснил основные концепции структуры данных «система непересекающихся множеств» (DSU), помог настроить среду Java и Git, а также принял участие в проверке моей реализации классов DisjointSet и DisjointSetTest.
 ## Timing (Mission 7)
 
 Milliseconds, 5 runs each, from `java -cp out Bench`.
