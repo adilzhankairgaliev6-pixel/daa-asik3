@@ -42,7 +42,7 @@ Broken (R×C−1): We have a total of R×C cells (vertices). To connect them all
 
 Kept ((R−1)(C−1)): The total number of internal walls in the grid exceeds what is required for the maze. If we subtract the walls we broke (R×C−1) from the total number of internal walls, we are left with exactly (R−1)(C−1) walls that remain standing in place.
 
-Mission 2. My MST cost from Kruskal and from Prim, and why they are equal:
+Mission 2. My MST cost from Kruskal and from Prim, and why they are equal:Both approaches gave me the exact same result of 30939. Kruskal sorted all the walls by cost and only knocked down a wall if it connected two different sets using my DSU, while Prim started from cell 0 and used a priority queue to always grab the cheapest wall leading to a new cell. Both algorithms are greedy and rely on the cut property where the cheapest wall crossing any split of cells always belongs to the optimal maze, and since all costs are unique, there is only one unique minimum spanning tree, which is why both algorithms had to find the exact same answer.
 
 Mission 3. Why is there exactly one path between two cells? How did you avoid a stack overflow on a huge maze?
 
@@ -55,6 +55,14 @@ Mission 5. Why is it enough to go through the zones in the order of their number
 Mission 0:Claude (Anthropic): explained the core concepts of the Disjoint Set Union (DSU) data structure, helped set up the Java and Git environment, and also took part in reviewing my implementation of the `DisjointSet` and `DisjointSetTest` classes.
 
 Mission 1:Claude (Anthropic): helped understand why the number of broken and kept walls follows these formulas, and explained the logic for implementing DSU and wall-breaking.
+
+Mission 2:I used Claude as a reference for drafting the Kruskal and Prim implementations, and to help troubleshoot a rejected git push.
+
+Mission 3:
+
+Mission 4:
+
+Mission 5:
 ## Timing (Mission 7)
 
 Milliseconds, 5 runs each, from `java -cp out Bench`.
