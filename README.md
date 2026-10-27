@@ -11,19 +11,19 @@ This file is the report. Fill it in as you go. How to start: `START_HERE.md`. Th
 
 The 13 lines your program prints on your data (`java -cp out Main`):
 
-    Broken:
-    Kept:
-    Last broken wall:
-    MST cost:
-    Heaviest broken wall:
-    Path length:
-    DFS visited:
-    Dead ends:
-    Zones:
-    Largest zone:
-    Is DAG:
-    Flow stages:
-    Fastest route cost:
+Broken: 107
+Kept: 88
+Last broken wall: 166
+MST cost: 30939
+Heaviest broken wall: 863
+Path length: 25
+DFS visited: 66
+Dead ends: 36
+Zones: 11
+Largest zone: 16
+Is DAG: 0
+Flow stages: 7
+Fastest route cost: 22
 
 My maze:
 
@@ -84,12 +84,12 @@ n is the number of cells, m the number of walls (or slides). Fill in every algor
 
 | algorithm | time | space | assumptions |
 |---|---|---|---|
-| DSU find and union | | | |
-| Kruskal | | | |
-| Prim | | | |
-| DFS | | | |
-| Kosaraju | | | |
-| Route in the zone graph | | | |
+| DSU find and union |O(α(n)) amortized per operation |O(n) | union by size and path compression; α is the inverse Ackermann function, below 5 in practice|
+| Kruskal | O(m log m)|	O(n + m) |sorting the walls dominates; the DSU part is almost O(m) |
+| Prim | 	O(m log m)|O(n + m)|binary heap (PriorityQueue) with lazy deletion: every wall can enter the queue once per end |
+| DFS |O(n) | 	O(n)|the maze is a tree, so m = n − 1; explicit stack, so no recursion depth problem |
+| Kosaraju |	O(n + m) | 	O(n + m) |two DFS passes with adjacency lists, plus the reversed lists |
+| Route in the zone graph | 	O(n + m)| 	O(n + m)| zones in topological order, one pass; no priority queue|
 
 ## Before you submit
 
