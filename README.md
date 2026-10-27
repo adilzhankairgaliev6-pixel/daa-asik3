@@ -72,9 +72,9 @@ Milliseconds, 5 runs each, from `java -cp out Bench`.
 
 | maze | Kruskal | Prim |
 |---|---|---|
-| 100 x 100 | | |
-| 300 x 300 | | |
-| 1000 x 1000 | | |
+| 100 x 100 |15 4 3 3 2 (avg 5)|	17 4 5 5 3 (avg 7)|
+| 300 x 300 | 26 17 16 18 18 (avg 19)|	60 63 51 52 54 (avg 56)|
+| 1000 x 1000 |319 305 283 271 428 (avg 321)|1555 1481 1544 1473 5907 (avg 2392)|
 
 What do the numbers say about how the time grows? Two or three sentences.
 
