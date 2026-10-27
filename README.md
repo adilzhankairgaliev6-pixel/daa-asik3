@@ -1,9 +1,9 @@
 # Assignment 3. Maze Escape
 
-Student ID:
-Name:
-Group:
-Maze size (rows x columns):
+Student ID:251988
+Name:Adilzhan Kairgaliev
+Group:SE-2540
+Maze size (rows x columns):9x12    
 
 This file is the report. Fill it in as you go. How to start: `START_HERE.md`. The task: `docs/Assignment3.pdf`.
 
