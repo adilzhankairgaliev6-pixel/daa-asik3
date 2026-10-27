@@ -45,6 +45,7 @@ Kept ((R−1)(C−1)): The total number of internal walls in the grid exceeds wh
 Mission 2. My MST cost from Kruskal and from Prim, and why they are equal:Both approaches gave me the exact same result of 30939. Kruskal sorted all the walls by cost and only knocked down a wall if it connected two different sets using my DSU, while Prim started from cell 0 and used a priority queue to always grab the cheapest wall leading to a new cell. Both algorithms are greedy and rely on the cut property where the cheapest wall crossing any split of cells always belongs to the optimal maze, and since all costs are unique, there is only one unique minimum spanning tree, which is why both algorithms had to find the exact same answer.
 
 Mission 3. Why is there exactly one path between two cells? How did you avoid a stack overflow on a huge maze?
+A maze is essentially just a tree: all the cells are connected, and there are exactly R * C - 1 edges, meaning there are no cycles whatsoever. And since there are no cycles, there’s exactly one path between any two cells (otherwise, you’d end up with a loop). To prevent the recursion from crashing—a "stack overflow"—on massive grids like 1000x1000, I implemented the DFS using an array allocated on the heap, rather than relying on the system call stack.
 
 Mission 4. Why does the second pass of Kosaraju go on the reversed graph? Why do the slides have no cycle exactly when Zones equals the number of cells?
 
@@ -58,7 +59,7 @@ Mission 1:Claude (Anthropic): helped understand why the number of broken and kep
 
 Mission 2:I used Claude as a reference for drafting the Kruskal and Prim implementations, and to help troubleshoot a rejected git push.
 
-Mission 3:
+Mission 3:I wrote a non-recursive DFS using an explicit array stack to avoid stack overflows on large grids (like 1000×1000). I just checked with Claude on the syntax/approach for the explicit stack, tested the code on my data, and I can explain how it works.I also used Claude for help with git (a rejected push, merge with the remote)
 
 Mission 4:
 
