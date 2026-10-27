@@ -51,6 +51,7 @@ Mission 4. Why does the second pass of Kosaraju go on the reversed graph? Why do
 If you reverse all the edges, every zone acts like a trap where you can only leave through the incoming paths. Running a double-pass DFS finds these zones one by one in topological order. If there are no cycles, every cell is its own zone so the total count equals n, whereas any cycle traps multiple cells into a single zone making the count less than n, which is why checking for no cycles is equivalent to checking if the number of zones equals n.
 
 Mission 5. Why is it enough to go through the zones in the order of their numbers? What does this pass cost?
+After Kosaraju's, the zones are in topological order, so every slide only goes from smaller numbers to larger ones. When we hit a zone, all its incoming paths are already processed, meaning its best cost and longest chain are instantly final. Because of that, a single pass in order is enough—no priority queues needed. It runs in $O(n + m)$ time: we just sort the slides by zone once using counting sort, then look at each zone and slide once.
 
 ## AI use
 
@@ -64,7 +65,7 @@ Mission 3:I wrote a non-recursive DFS using an explicit array stack to avoid sta
 
 Mission 4:For Kosaraju's algorithm (two passes with an explicit stack, numbering zones in the second pass order), I handled the implementation while Claude just helped me quickly outline the structure and check why the second pass uses the reversed graph. I tested it on the examples and my data and can fully explain it.I also used Claude for help with git (rejected pushes, merging with the remote)
 
-Mission 5:
+Mission 5: I implemented the pass over the zones in the order of their numbers to find the longest chain and cheapest route without a priority queue. Claude just helped me quickly verify the logic, I tested it on the three examples and my own data, and I can explain why this order is enough.I also used Claude for help with git (rejected pushes, merging with the remote)
 ## Timing (Mission 7)
 
 Milliseconds, 5 runs each, from `java -cp out Bench`.
