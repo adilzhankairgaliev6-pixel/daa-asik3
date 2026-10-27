@@ -11,7 +11,15 @@ public class Maze {
      */
     public static int[] breakWalls(Input.Walls w) {
         // TODO
-        return new int[0];
+        DisjointSet dsu = new DisjointSet(w.cells());
+        int[] result = new int[w.cells() - 1];   // в дереве из n клеток ровно n-1 рёбер
+        int broken = 0;
+        for (int k = 0; k < w.count(); k++) {
+            if (dsu.union(w.a()[k], w.b()[k])) {  // true: клетки были в разных группах, ломаем стену
+                result[broken++] = k;
+            }
+        }
+        return java.util.Arrays.copyOf(result, broken);
     }
 
     /**
